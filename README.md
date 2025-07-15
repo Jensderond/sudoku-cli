@@ -26,16 +26,34 @@ go run main.go
 
 ## Build
 
-To build the application:
+To build and install the application:
 
 ```bash
-go build -o sudoku-cli
+go build -o sudoku .
+mkdir -p ~/bin
+cp sudoku ~/bin/sudoku
 ```
 
 Then run the executable:
 
 ```bash
-./sudoku-cli
+~/bin/sudoku
+```
+
+## Installation
+
+To install directly from GitHub:
+
+```bash
+go install github.com/jensderond/sudoku-cli@latest
+```
+
+Or clone and build:
+
+```bash
+git clone https://github.com/jensderond/sudoku-cli.git
+cd sudoku-cli
+go build -o sudoku .
 ```
 
 ## Dependencies
@@ -49,9 +67,7 @@ This is a starting point for a Sudoku CLI application. The current implementatio
 - Basic menu structure
 - Keyboard navigation
 - Interactive selection system
+- Different difficulty levels
 
 Future enhancements could include:
-- Actual Sudoku game logic
-- Save/load functionality
-- Different difficulty levels
 - Game statistics
