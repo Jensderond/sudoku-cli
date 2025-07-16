@@ -12,33 +12,8 @@ A terminal-based Sudoku game built with Go and Bubble Tea.
 
 - **Arrow Keys** or **j/k**: Navigate menu items
 - **Enter** or **Space**: Select menu item
+- **d**: Switch difficulty (game needs to be reloaded after switching)
 - **q** or **Ctrl+C**: Quit application
-
-## Installation
-
-1. Clone or download this project
-2. Navigate to the project directory
-3. Run the application:
-
-```bash
-go run main.go
-```
-
-## Build
-
-To build and install the application:
-
-```bash
-go build -o sudoku .
-mkdir -p ~/bin
-cp sudoku ~/bin/sudoku
-```
-
-Then run the executable:
-
-```bash
-~/bin/sudoku
-```
 
 ## Installation
 
@@ -56,13 +31,35 @@ cd sudoku-cli
 go build -o sudoku .
 ```
 
+## Development
+
+To run the application in development mode:
+
+```bash
+go run main.go
+```
+
+To build and install locally:
+
+```bash
+go build -o sudoku .
+mkdir -p ~/bin
+cp sudoku ~/bin/sudoku
+```
+
+Then run the executable:
+
+```bash
+~/bin/sudoku
+```
+
 ## Dependencies
 
 - [Bubble Tea](https://github.com/charmbracelet/bubbletea) - A powerful little TUI framework
 
-## Development
+## Project Status
 
-This is a starting point for a Sudoku CLI application. The current implementation provides:
+This is a Sudoku CLI application. The current implementation provides:
 
 - Basic menu structure
 - Keyboard navigation
@@ -71,3 +68,4 @@ This is a starting point for a Sudoku CLI application. The current implementatio
 
 Future enhancements could include:
 - Game statistics
+- Save/load functionality
