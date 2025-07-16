@@ -23,6 +23,12 @@ To install directly from GitHub:
 go install github.com/jensderond/sudoku-cli/cmd/sudoku@latest
 ```
 
+Or install a specific version:
+
+```bash
+go install github.com/jensderond/sudoku-cli/cmd/sudoku@v1.0.0
+```
+
 Or clone and build:
 
 ```bash
