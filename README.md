@@ -20,7 +20,7 @@ A terminal-based Sudoku game built with Go and Bubble Tea.
 To install directly from GitHub:
 
 ```bash
-go install github.com/jensderond/sudoku-cli@latest
+go install github.com/jensderond/sudoku-cli/cmd/sudoku@latest
 ```
 
 Or clone and build:
@@ -28,7 +28,7 @@ Or clone and build:
 ```bash
 git clone https://github.com/jensderond/sudoku-cli.git
 cd sudoku-cli
-go build -o sudoku .
+go build -o sudoku ./cmd/sudoku
 ```
 
 ## Development
@@ -36,13 +36,13 @@ go build -o sudoku .
 To run the application in development mode:
 
 ```bash
-go run main.go
+go run ./cmd/sudoku
 ```
 
 To build and install locally:
 
 ```bash
-go build -o sudoku .
+go build -o sudoku ./cmd/sudoku
 mkdir -p ~/bin
 cp sudoku ~/bin/sudoku
 ```
