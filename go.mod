@@ -1,4 +1,4 @@
-module sudoku-cli
+module github.com/jensderond/sudoku-cli
 
 go 1.24.2
 
