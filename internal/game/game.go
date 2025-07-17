@@ -59,7 +59,7 @@ func (g *Game) HandleNumberInput(num int) bool {
 	}
 
 	oldValue := g.Sudoku.Grid[g.Sudoku.CursorY][g.Sudoku.CursorX]
-	
+
 	if !g.Sudoku.SetValue(num) {
 		return false // Cannot modify initial cells
 	}
@@ -106,7 +106,7 @@ func (g *Game) GetTimeString() string {
 // Get lives display
 func (g *Game) GetLivesDisplay() string {
 	display := ""
-	for i := 0; i < 3; i++ {
+	for i := range [3]struct{}{} {
 		if i < g.Lives {
 			display += "❤️ "
 		} else {

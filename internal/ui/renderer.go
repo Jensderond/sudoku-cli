@@ -32,10 +32,10 @@ func RenderGrid(g *game.Game) string {
 	// Build the grid with borders
 	s.WriteString("┏━━━┯━━━┯━━━┳━━━┯━━━┯━━━┳━━━┯━━━┯━━━┓\n")
 
-	for i := 0; i < 9; i++ {
+	for i := range g.Sudoku.Grid {
 		s.WriteString("┃")
 
-		for j := 0; j < 9; j++ {
+		for j := range g.Sudoku.Grid[i] {
 			cell := " "
 			if g.Sudoku.Grid[i][j] != 0 {
 				cell = fmt.Sprintf("%d", g.Sudoku.Grid[i][j])

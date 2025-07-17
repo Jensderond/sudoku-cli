@@ -5,7 +5,7 @@ import "math/rand"
 // Generate a complete valid Sudoku grid
 func generateCompleteGrid(grid *[9][9]int) {
 	// Fill diagonal 3x3 boxes first (they don't affect each other)
-	for i := 0; i < 9; i += 3 {
+	for _, i := range []int{0, 3, 6} {
 		fillBox(grid, i, i)
 	}
 
@@ -19,8 +19,8 @@ func fillBox(grid *[9][9]int, startRow, startCol int) {
 	shuffle(nums)
 
 	index := 0
-	for i := 0; i < 3; i++ {
-		for j := 0; j < 3; j++ {
+	for i := range [3]struct{}{} {
+		for j := range [3]struct{}{} {
 			grid[startRow+i][startCol+j] = nums[index]
 			index++
 		}
@@ -77,14 +77,14 @@ func getNextCell(row, col int) (int, int) {
 // Check if a number is valid at a position
 func isValid(grid *[9][9]int, row, col, num int) bool {
 	// Check row
-	for i := 0; i < 9; i++ {
+	for i := range grid[row] {
 		if grid[row][i] == num {
 			return false
 		}
 	}
 
 	// Check column
-	for i := 0; i < 9; i++ {
+	for i := range grid {
 		if grid[i][col] == num {
 			return false
 		}
@@ -92,8 +92,8 @@ func isValid(grid *[9][9]int, row, col, num int) bool {
 
 	// Check 3x3 box
 	boxRow, boxCol := (row/3)*3, (col/3)*3
-	for i := 0; i < 3; i++ {
-		for j := 0; j < 3; j++ {
+	for i := range [3]struct{}{} {
+		for j := range [3]struct{}{} {
 			if grid[boxRow+i][boxCol+j] == num {
 				return false
 			}
@@ -109,8 +109,8 @@ func hasUniqueSolution(grid [9][9]int) bool {
 	var testGrid [9][9]int
 
 	// Copy grid
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
+	for i := range testGrid {
+		for j := range testGrid[i] {
 			testGrid[i][j] = grid[i][j]
 		}
 	}

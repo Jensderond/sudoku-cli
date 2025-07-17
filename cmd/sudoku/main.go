@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
-	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/jensderond/sudoku-cli/internal/game"
@@ -13,9 +11,6 @@ import (
 )
 
 func main() {
-	// Seed random number generator
-	rand.Seed(time.Now().UnixNano())
-
 	// Initialize game
 	g := game.New(sudoku.Medium)
 

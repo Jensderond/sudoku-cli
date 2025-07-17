@@ -50,8 +50,8 @@ func New(difficulty Difficulty) Sudoku {
 	generateCompleteGrid(&s.Solution)
 
 	// Copy solution to current grid
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
+	for i := range s.Grid {
+		for j := range s.Grid[i] {
 			s.Grid[i][j] = s.Solution[i][j]
 		}
 	}
@@ -80,8 +80,8 @@ func New(difficulty Difficulty) Sudoku {
 	}
 
 	// Mark initial cells
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
+	for i := range s.Initial {
+		for j := range s.Initial[i] {
 			s.Initial[i][j] = s.Grid[i][j] != 0
 		}
 	}
@@ -91,8 +91,8 @@ func New(difficulty Difficulty) Sudoku {
 
 // Check if the puzzle is solved
 func (s *Sudoku) IsSolved() bool {
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
+	for i := range s.Grid {
+		for j := range s.Grid[i] {
 			if s.Grid[i][j] != s.Solution[i][j] {
 				return false
 			}
@@ -110,7 +110,7 @@ func (s *Sudoku) GetCurrentValue() int {
 func (s *Sudoku) MoveCursor(dx, dy int) {
 	newX := s.CursorX + dx
 	newY := s.CursorY + dy
-	
+
 	if newX >= 0 && newX < 9 {
 		s.CursorX = newX
 	}
