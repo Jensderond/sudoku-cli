@@ -2,6 +2,8 @@
 
 A terminal-based Sudoku game built with Go and Bubble Tea.
 
+![Sudoku CLI Screenshot](assets/screenshot.jpg)
+
 ## Features
 
 - Interactive menu system
