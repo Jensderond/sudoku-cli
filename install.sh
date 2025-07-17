@@ -76,26 +76,26 @@ install_binary() {
     local os=$1
     local arch=$2
     local version=${3:-"latest"}
-    
+
     print_info "Detected system: $os-$arch"
-    
+
     # Determine file extension
     local file_ext="tar.gz"
     if [ "$os" = "windows" ]; then
         file_ext="zip"
     fi
-    
+
     # Construct download URL
     local filename="sudoku-${os}-${arch}.${file_ext}"
     local download_url="https://github.com/${GITHUB_REPO}/releases/${version}/download/${filename}"
-    
+
     print_info "Downloading from: $download_url"
-    
+
     # Create temporary directory
     local temp_dir
     temp_dir=$(mktemp -d)
     cd "$temp_dir"
-    
+
     # Download the file
     if command_exists curl; then
         curl -fsSL "$download_url" -o "$filename"
@@ -105,7 +105,7 @@ install_binary() {
         print_error "Neither curl nor wget is available. Please install one of them."
         exit 1
     fi
-    
+
     # Extract the file
     if [ "$file_ext" = "tar.gz" ]; then
         tar -xzf "$filename"
@@ -117,23 +117,23 @@ install_binary() {
             exit 1
         fi
     fi
-    
+
     # Determine binary name
     local binary_file="$BINARY_NAME"
     if [ "$os" = "windows" ]; then
         binary_file="${BINARY_NAME}.exe"
     fi
-    
+
     # Make binary executable
     chmod +x "$binary_file"
-    
+
     # Determine installation directory
     local install_dir="/usr/local/bin"
     if [ "$os" = "windows" ]; then
         install_dir="$HOME/bin"
         mkdir -p "$install_dir"
     fi
-    
+
     # Install the binary
     if [ -w "$install_dir" ]; then
         mv "$binary_file" "$install_dir/$binary_file"
@@ -143,15 +143,15 @@ install_binary() {
         sudo mv "$binary_file" "$install_dir/$binary_file"
         print_info "Successfully installed $BINARY_NAME to $install_dir (with sudo)"
     fi
-    
+
     # Cleanup
     cd - > /dev/null
     rm -rf "$temp_dir"
-    
+
     # Verify installation
     if command_exists "$BINARY_NAME"; then
         print_info "Installation successful! You can now run '$BINARY_NAME'"
-        print_info "Run '$BINARY_NAME --help' to get started."
+        print_info "Run '$BINARY_NAME' to get started."
     else
         print_warning "Installation completed, but '$BINARY_NAME' is not in your PATH."
         if [ "$os" = "windows" ]; then
@@ -178,7 +178,7 @@ show_usage() {
 # Main function
 main() {
     local version="latest"
-    
+
     # Parse command line arguments
     while [[ $# -gt 0 ]]; do
         case $1 in
@@ -197,15 +197,15 @@ main() {
                 ;;
         esac
     done
-    
+
     print_info "Starting Sudoku CLI installation..."
-    
+
     # Detect system
     local os
     local arch
     os=$(detect_os)
     arch=$(detect_arch)
-    
+
     # Install binary
     install_binary "$os" "$arch" "$version"
 }
