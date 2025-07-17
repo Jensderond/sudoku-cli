@@ -59,11 +59,6 @@ tar -xzf sudoku-macos-arm64.tar.gz
 sudo mv sudoku /usr/local/bin/sudoku
 ```
 
-#### Windows
-1. Download `sudoku-windows-amd64.zip` from the [releases page](https://github.com/jensderond/sudoku-cli/releases)
-2. Extract the zip file
-3. Move `sudoku.exe` to a folder in your PATH or run it directly
-
 ### Option 3: Install with Go (for developers)
 
 To install directly from GitHub:
@@ -75,7 +70,7 @@ go install github.com/jensderond/sudoku-cli/cmd/sudoku@latest
 Or install a specific version:
 
 ```bash
-go install github.com/jensderond/sudoku-cli/cmd/sudoku@v1.0.0
+go install github.com/jensderond/sudoku-cli/cmd/sudoku@1.0.0
 ```
 
 ### Option 4: Build from Source
