@@ -1,0 +1,56 @@
+version: 2
+project_name: sudoku-cli
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: default
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+    main: ./cmd/sudoku
+    binary: sudoku
+
+archives:
+  - name_template: >-
+      sudoku-
+      {{- if eq .Os "darwin" }}macos-
+      {{- else if eq .Os "windows" }}windows-
+      {{- else if eq .Os "linux" }}linux-{{end}}
+      {{- if eq .Arch "amd64" }}amd64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    formats:
+      - tar.gz
+      - zip
+    files:
+      - README.md
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "0.0.0-{{ .Timestamp }}"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^doc:"
+      - "^test:"
+      - "^ci:"
+      - "^ignore:"
+      - "^example:"
+      - "^wip:"
