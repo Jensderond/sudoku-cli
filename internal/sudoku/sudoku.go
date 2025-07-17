@@ -1,9 +1,5 @@
 package sudoku
 
-import (
-	"math/rand"
-)
-
 // Difficulty levels
 type Difficulty int
 
@@ -56,28 +52,9 @@ func New(difficulty Difficulty) Sudoku {
 		}
 	}
 
-	// Remove numbers based on difficulty
+	// Remove numbers based on difficulty using optimized strategy
 	cellsToRemove := getCellsToRemove(difficulty)
-	removed := 0
-	attempts := 0
-
-	for removed < cellsToRemove && attempts < 1000 {
-		x := rand.Intn(9)
-		y := rand.Intn(9)
-
-		if s.Grid[x][y] != 0 {
-			backup := s.Grid[x][y]
-			s.Grid[x][y] = 0
-
-			// Check if puzzle still has unique solution
-			if hasUniqueSolution(s.Grid) {
-				removed++
-			} else {
-				s.Grid[x][y] = backup
-			}
-		}
-		attempts++
-	}
+	removeCellsSymmetrically(&s.Grid, cellsToRemove)
 
 	// Mark initial cells
 	for i := range s.Initial {
